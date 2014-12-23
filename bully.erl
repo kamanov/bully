@@ -71,8 +71,8 @@ set_coordinator(Node, Coordinator) ->
 win_voting(Node) ->
   log_info("Win voting"),
   lists:foreach(fun send_coordinator_notify_message/1, Node#node.connected),
-  set_coordinator(Node, node()).
+  Node#node{coordinator = node(), timeout = infinity}.
 
 log_info(Info) ->
-  io:format("Node ~s : ~s ~n", [atom_to_list(node()), [Info]]).
+  io:format("Node ~s PID ~s : ~s ~n", [atom_to_list(node()), os:getpid(), [Info]]).
 
