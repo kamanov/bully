@@ -16,9 +16,7 @@ do
 		      CONNECTED_NODES+=" node$j@`hostname`"
 		fi    
 	done
-	echo "NODES"
-	echo $CONNECTED_NODES
-    erl bully -sname "node$i" -s bully start ${CONNECTED_NODES} -s init stop -noshell &
+    	erl bully -name "node$i" -s bully start ${CONNECTED_NODES} -s init stop -noshell &
 done
 read
 echo "Stop"
